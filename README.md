@@ -1,4 +1,5 @@
 # Project Name: Edge Detection with CUDA x64
+![Uploading image.png…]()
 
 ## Overview
 
