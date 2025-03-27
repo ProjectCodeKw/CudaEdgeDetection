@@ -8,7 +8,7 @@ This project demonstrates edge detection in images using CUDA. It processes an i
 
 - **CUDA-accelerated edge detection** using the Sobel operator.
 - **CPU-based edge detection** for benchmarking.
-- Read and write grayscale PPM (P5) image files.
+- Read and write grayscale PPM (P2) image files.
 - Comparison of edge detection speed between CPU and GPU.
 
 ## Requirements

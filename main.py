@@ -52,8 +52,17 @@ def delete_file(file):
 
 def convert_to_ppm():
     with Image.open(local_image_path) as img:
-        img = img.convert("L")  # Convert to grayscale P5
-        img.save(local_image_path, format='PPM')  # Overwrite the image
+        img = img.convert("L")  # Convert to grayscale
+
+        width, height = img.size
+        pixels = list(img.getdata())
+
+        # Write P2 format
+        with open(local_image_path, "w") as f:
+            f.write(f"P2\n{width} {height}\n255\n")
+            for i in range(height):
+                row = pixels[i * width : (i + 1) * width]
+                f.write(" ".join(map(str, row)) + "\n")  # Write ASCII pixel values
 
 def get_image_hash(img):
     # Generate a hash for the image file to track changes
@@ -100,7 +109,7 @@ if __name__ == "__main__":
                 """, unsafe_allow_html=True)
             avs.add_vertical_space(1)
             
-            # Convert the image to PPM P5
+            # Convert the image to PPM P2
             convert_to_ppm()
             # Call the CUDA program
             run_cuda_program()
